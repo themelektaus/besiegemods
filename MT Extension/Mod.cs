@@ -1,74 +1,67 @@
-﻿using System;
+﻿using MTCore;
 using spaar.ModLoader;
-using UnityEngine;
+using System;
 using System.Reflection;
-using MTB;
+using UnityEngine;
 
 namespace MTExtension
 {
-	public class Mod : spaar.ModLoader.Mod
+	public class Mod : MTCore.Mod
 	{
 		public override string Name { get; } = "MTExtension";
 		public override string DisplayName { get; } = "MT Extension";
 		public override string Author { get; } = "MelekTaus";
 		public override bool CanBeUnloaded { get; } = false;
 		public override Version Version { get; } = Assembly.GetExecutingAssembly().GetName().Version;
-		
-		private static readonly MTBBlocks _Blocks = new MTBBlocks();
 
 		public override void OnLoad() {
+			base.OnLoad();
 			Game.OnBlockPlaced += Game_OnBlockPlaced;
 			Game.OnBlockRemoved += Game_OnBlockRemoved;
 			Game.OnKeymapperOpen += Game_OnKeymapperOpen;
-			XmlLoader.OnLoad += _Blocks.Load;
-			XmlSaver.OnSave += _Blocks.Save;
 		}
-		
+
 		public override void OnUnload() {
 			Configuration.Save();
+			base.OnUnload();
 		}
-		
-		private static void Game_OnBlockPlaced(Transform blockTransform) {
+
+		private void Game_OnBlockPlaced(Transform blockTransform) {
 			_Add(blockTransform.GetComponent<BlockBehaviour>());
 			if (blockTransform.GetComponent<TimedRocket>()) {
-				blockTransform.gameObject.AddComponent<RocketExtension>();
+				blockTransform.gameObject.AddComponent<RocketBehaviour>();
 			}
 		}
 
 		private void Game_OnBlockRemoved() {
-			
+
 		}
-		
-		private static void Game_OnKeymapperOpen() {
-			if (_Add(BlockMapper.CurrentInstance.Block)) {
-				BlockMapper.CurrentInstance.Refresh();
-			}
+
+		private void Game_OnKeymapperOpen() {
+			_Add(BlockMapper.CurrentInstance.Block);
 			_Add(Machine.Active().BuildingBlocks.ToArray());
 		}
-		
-		private static bool _Add(params BlockBehaviour[] blocks) {
+
+		private bool _Add(params BlockBehaviour[] blocks) {
 			bool result = false;
 			foreach (var block in blocks) {
 				if (block.GetBlockID() != (int) BlockType.Rocket) {
 					continue;
 				}
-				if (block.MapperTypes.Exists(match => match.Key == "RocketHoldMode")) {
-					continue;
+				result = result || SetToggle(block, "holdmode", "Hold Mode", (isActive) => _RocketToggleHandler(block, true, false));
+				result = result || SetToggle(block, "togglemode", "Toggle Mode", (isActive) => _RocketToggleHandler(block, false, true));
+				if (result) {
+					_RocketToggleHandler(block);
 				}
-				result = true;
-
-				_Blocks.CreateToggle(block, "RocketHoldMode", "Hold Mode", (isActive) => _RocketToggleHandler(block, true, false));
-				_Blocks.CreateToggle(block, "RocketToggleMode", "Toggle Mode", (isActive) => _RocketToggleHandler(block, false, true));
-				_RocketToggleHandler(block);
 			}
 			return result;
 		}
 
-		private static void _RocketToggleHandler(BlockBehaviour block, bool hold = false, bool toggle = false) {
-			var holdModeToggle = block.GetToggle("RocketHoldMode");
-			var toggleModeToggle = block.GetToggle("RocketToggleMode");
+		private void _RocketToggleHandler(BlockBehaviour block, bool hold = false, bool toggle = false) {
+			var holdModeToggle = block.GetToggle("holdmode");
+			var toggleModeToggle = block.GetToggle("togglemode");
 			var durationSlider = block.GetSlider("duration");
-			
+
 			if (hold && holdModeToggle.IsActive) {
 				toggleModeToggle.IsActive = false;
 			} else if (toggle && toggleModeToggle.IsActive) {

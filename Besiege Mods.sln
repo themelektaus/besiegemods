@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26403.3
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MT Extension", "MT Extension\MT Extension.csproj", "{6A16F1F7-31C2-4CAE-9FD3-0C56BBD29757}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTB", "MTB\MTB.csproj", "{DD7B8983-D79D-4E15-BA77-6506C773318A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MT Core", "MT Core\MT Core.csproj", "{DD7B8983-D79D-4E15-BA77-6506C773318A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModLoader", "ModLoader\ModLoader.csproj", "{975AD54A-4D46-4028-8BFB-E847C527C409}"
 EndProject

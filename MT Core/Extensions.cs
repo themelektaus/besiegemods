@@ -4,16 +4,10 @@ using System.Reflection;
 using System.Text;
 using UnityEngine;
 
-namespace MTB
+namespace MTCore
 {
-    public static class MTBExtensions
-    {
-		public static void ToggleConsole(this spaar.ModLoader.Mod obj) {
-			// WindowsInput.InputSimulator.SimulateKeyDown(WindowsInput.VirtualKeyCode.LCONTROL);
-			// WindowsInput.InputSimulator.SimulateKeyPress(WindowsInput.VirtualKeyCode.VK_K);
-			// WindowsInput.InputSimulator.SimulateKeyUp(WindowsInput.VirtualKeyCode.LCONTROL);
-		}
-
+	public static class Extensions
+	{
 		public static void VarDump(this object obj) {
 			Debug.Log(obj.VarExport());
 		}

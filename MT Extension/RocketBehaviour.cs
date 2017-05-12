@@ -1,9 +1,9 @@
-﻿using MTB;
+﻿using MTCore;
 using UnityEngine;
 
 namespace MTExtension
 {
-	public class RocketExtension : MonoBehaviour
+	public class RocketBehaviour : MonoBehaviour
 	{
 		private TimedRocket _Rocket;
 		private int _State;
@@ -15,7 +15,7 @@ namespace MTExtension
 
 		private void Update() {
 			if (spaar.ModLoader.Game.IsSimulating) {
-				var rocketHold = _Rocket.GetToggle("RocketHoldMode").IsActive;
+				var rocketHold = _Rocket.GetToggle("holdmode").IsActive;
 				if (rocketHold) {
 					foreach (var key in _Rocket.Keys) {
 						if (key.IsReleased) {
@@ -41,7 +41,7 @@ namespace MTExtension
 
 		private void LateUpdate() {
 			if (spaar.ModLoader.Game.IsSimulating) {
-				var rocketToggle = _Rocket.GetToggle("RocketToggleMode").IsActive;
+				var rocketToggle = _Rocket.GetToggle("togglemode").IsActive;
 				if (rocketToggle) {
 					foreach (var key in _Rocket.Keys) {
 						if (key.IsPressed) {
