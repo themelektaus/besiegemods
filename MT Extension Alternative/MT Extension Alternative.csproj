@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6A16F1F7-31C2-4CAE-9FD3-0C56BBD29757}</ProjectGuid>
+    <ProjectGuid>{B7666F83-4F61-4A76-A39A-75BF6112D164}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MTExtension</RootNamespace>
-    <AssemblyName>MTExtension</AssemblyName>
+    <RootNamespace>MTExtensionAlternative</RootNamespace>
+    <AssemblyName>MTExtensionAlternative</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -44,6 +44,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(BESIEGE_LOCATION)Besiege_Data\Managed\Assembly-UnityScript.dll</HintPath>
     </Reference>
+    <Reference Include="Assembly-UnityScript-firstpass, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(BESIEGE_LOCATION)Besiege_Data\Managed\Assembly-UnityScript-firstpass.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(BESIEGE_LOCATION)Besiege_Data\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
     <Reference Include="Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(BESIEGE_LOCATION)Besiege_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
@@ -58,16 +66,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomComponent.cs" />
-    <Compile Include="RocketComponent.cs" />
+    <Compile Include="ReflectionHelper.cs" />
+    <Compile Include="RocketPatch.cs" />
     <Compile Include="Mod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MT Core\MT Core.csproj">
-      <Project>{dd7b8983-d79d-4e15-ba77-6506c773318a}</Project>
-      <Name>MT Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
