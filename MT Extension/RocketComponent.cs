@@ -35,6 +35,7 @@
 							} else if (_Rocket.hasFired) {
 								_StopRocket();
 							}
+							break;
 						}
 					}
 				} else if (Mod.GetToggleValue(_Rocket, "holdmode")) {
