@@ -1,4 +1,6 @@
-﻿namespace MTExtension
+﻿using MTCore;
+
+namespace MTExtension
 {
 	public class RocketComponent : CustomComponent
 	{

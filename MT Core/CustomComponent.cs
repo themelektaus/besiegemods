@@ -1,7 +1,6 @@
-﻿using MTCore;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace MTExtension
+namespace MTCore
 {
 	public class CustomComponent : MonoBehaviour
 	{
