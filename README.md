@@ -1,2 +1,2 @@
-# Besiege Mods
-Template and collection of Besiege mods and extensions
+# Besiege Mod
+Template and collection of Besiege mods and extensions.
